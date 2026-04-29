@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta — Michelle Peiret | MOSU by Ana Silva</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bone:#FFFDF1;
+  --clay:#AF9575;
+  --moss:#595C48;
+  --deep:#2A342E;
+  --text-dark:#2A342E;
+  --text-light:#FFFDF1;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--bone);
+  color:var(--text-dark);
+  overflow-x:hidden;
+}
+
+.deck{
+  scroll-snap-type:y mandatory;
+  overflow-y:scroll;
+  height:100vh;
+}
+
+section{
+  min-height:100vh;
+  scroll-snap-align:start;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:60px 80px;
+}
+
+/* ANIMATIONS */
+.a{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.a.in{opacity:1;transform:translateY(0)}
+.a.d1{transition-delay:.15s}
+.a.d2{transition-delay:.3s}
+.a.d3{transition-delay:.45s}
+.a.d4{transition-delay:.6s}
+
+/* TYPOGRAPHY */
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:400}
+h1{font-size:clamp(48px,6vw,96px);line-height:1.05}
+h2{font-size:clamp(36px,4.5vw,72px);line-height:1.1}
+h3{font-size:clamp(24px,2.5vw,40px);line-height:1.2}
+p{font-size:clamp(14px,1.2vw,18px);line-height:1.7;font-weight:300;letter-spacing:.02em}
+.label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;font-weight:500}
+.italic{font-style:italic}
+
+/* === SLIDE 1 — COVER === */
+.cover{
+  background:var(--deep);
+  flex-direction:column;
+  text-align:center;
+  gap:22px;
+}
+.cover .logo-top{width:260px;opacity:.9;margin-bottom:0}
+.cover h1{color:var(--text-light)}
+.cover h1 em{font-style:italic;color:var(--clay)}
+.cover .sub{color:var(--clay);letter-spacing:.3em;text-transform:uppercase;font-size:12px;font-weight:500}
+.cover .line{width:60px;height:1px;background:var(--clay);margin:0 auto}
+.cover .for{color:rgba(255,253,241,.5);font-size:13px;letter-spacing:.15em}
+
+/* === SLIDE 2 — INTRO === */
+.intro{
+  background:var(--bone);
+  flex-direction:column;
+  text-align:left;
+  gap:40px;
+  max-width:100%;
+}
+.intro .inner{max-width:900px}
+.intro h2{color:var(--deep);margin-bottom:20px}
+.intro h2 em{color:var(--moss)}
+.intro p{color:var(--moss);max-width:700px}
+.intro .accent-line{width:80px;height:2px;background:var(--clay);margin-bottom:10px}
+
+/* === SLIDE 3 — VISION (IMAGE SPLIT) === */
+.vision{
+  padding:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.vision .img-side{
+  background:url('1AAEC813-6471-4A26-8222-82FFEF047873.PNG') center/cover no-repeat;
+  min-height:100vh;
+}
+.vision .text-side{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 70px;
+  background:var(--deep);
+  color:var(--text-light);
+  gap:30px;
+}
+.vision .text-side h2{color:var(--text-light)}
+.vision .text-side h2 em{color:var(--clay)}
+.vision .text-side p{color:rgba(255,253,241,.7);max-width:480px}
+
+/* === SLIDE 4 — THE PIECE (IMAGE SPLIT REVERSED) === */
+.piece{
+  padding:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.piece .text-side{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 70px;
+  background:var(--moss);
+  color:var(--text-light);
+  gap:25px;
+}
+.piece .text-side h2{color:var(--text-light)}
+.piece .text-side h2 em{color:var(--clay)}
+.piece .text-side p{color:rgba(255,253,241,.7);max-width:480px}
+.piece .img-side{
+  background:url('C14CF227-7D38-44E6-89B8-541AB9C4A443.PNG') center/cover no-repeat;
+  min-height:100vh;
+}
+
+/* === SLIDE 5 — GIFT === */
+.gift{
+  background:var(--bone);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:0;
+}
+.gift .img-side{
+  background:url('49DE4ECA-D007-4C22-8BFB-94D826BD8C35.PNG') center/cover no-repeat;
+  min-height:100vh;
+}
+.gift .text-side{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 70px;
+  gap:25px;
+}
+.gift .text-side h3{color:var(--deep)}
+.gift .text-side h2{color:var(--deep)}
+.gift .text-side h2 em{color:var(--clay)}
+.gift .text-side p{color:var(--moss);max-width:480px}
+.gift-badge{
+  display:inline-block;
+  background:var(--clay);
+  color:var(--text-light);
+  padding:8px 24px;
+  border-radius:30px;
+  font-size:12px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-weight:500;
+  width:fit-content;
+}
+
+/* === SLIDE 6 — INVESTMENT === */
+.investment{
+  background:var(--deep);
+  flex-direction:column;
+  text-align:center;
+  gap:50px;
+}
+.investment h2{color:var(--text-light)}
+.investment h2 em{color:var(--clay)}
+.price-block{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:15px;
+}
+.price{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(64px,8vw,120px);
+  color:var(--clay);
+  font-weight:400;
+  line-height:1;
+}
+.price-note{color:rgba(255,253,241,.5);font-size:14px;letter-spacing:.15em}
+.terms{
+  display:flex;
+  gap:60px;
+  margin-top:20px;
+}
+.term{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.term-icon{
+  width:50px;
+  height:50px;
+  border:1px solid var(--clay);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--clay);
+  font-size:20px;
+}
+.term-label{color:var(--text-light);font-size:13px;font-weight:500;letter-spacing:.05em}
+.term-detail{color:rgba(255,253,241,.5);font-size:12px;letter-spacing:.1em}
+
+/* === SLIDE 7 — SUMMARY === */
+.summary{
+  background:var(--bone);
+  flex-direction:column;
+  gap:50px;
+}
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  max-width:1000px;
+}
+.summary-card{
+  border:1px solid rgba(89,92,72,.15);
+  padding:40px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  text-align:center;
+}
+.summary-card .num{
+  font-family:'Playfair Display',serif;
+  font-size:48px;
+  color:var(--clay);
+  font-style:italic;
+}
+.summary-card h3{font-size:18px;color:var(--deep)}
+.summary-card p{font-size:13px;color:var(--moss);line-height:1.6}
+
+/* === SLIDE 8 — CLOSING === */
+.closing{
+  background:var(--moss);
+  flex-direction:column;
+  text-align:center;
+  gap:30px;
+}
+.closing .logo-bottom{width:280px;opacity:.8;margin-bottom:10px}
+.closing h2{color:var(--text-light);max-width:700px}
+.closing h2 em{color:var(--clay)}
+.closing p{color:rgba(255,253,241,.6);max-width:500px;font-size:14px}
+.closing .line{width:60px;height:1px;background:var(--clay);margin:0 auto}
+.closing .contact{color:var(--clay);font-size:13px;letter-spacing:.15em}
+
+/* SCROLL INDICATOR */
+.scroll-hint{
+  position:fixed;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  z-index:100;
+  opacity:.5;
+  transition:opacity .5s;
+}
+.scroll-hint span{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
+.scroll-hint .arrow{
+  width:1px;height:30px;background:var(--clay);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:.3;transform:scaleY(.7)}
+  50%{opacity:1;transform:scaleY(1)}
+}
+
+/* PAGE COUNTER */
+.counter{
+  position:fixed;
+  bottom:30px;
+  right:40px;
+  font-size:11px;
+  letter-spacing:.15em;
+  color:var(--clay);
+  z-index:100;
+  font-weight:500;
+}
+
+@media(max-width:768px){
+  section{padding:40px 30px}
+  .vision,.piece,.gift{grid-template-columns:1fr;grid-template-rows:50vh auto}
+  .vision .text-side,.piece .text-side,.gift .text-side{padding:50px 30px}
+  .vision .img-side,.piece .img-side,.gift .img-side{min-height:50vh}
+  .terms{flex-direction:column;gap:30px}
+  .summary-grid{grid-template-columns:1fr;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — COVER -->
+  <section class="cover">
+    <img src="mosu-logo-white.png" alt="MOSU" class="logo-top a">
+    <div class="line a d1"></div>
+    <p class="sub a d2">Propuesta Exclusiva</p>
+    <h1 class="a d3">Michelle, <em>esto es para ti.</em></h1>
+    <p class="for a d4">Una pieza pensada para tu espacio y para la experiencia que mereces transmitir.</p>
+  </section>
+
+  <!-- SLIDE 2 — INTRO -->
+  <section class="intro">
+    <div class="inner">
+      <div class="accent-line a"></div>
+      <p class="label a d1">La Visión</p>
+      <h2 class="a d2">Tu espacio ya habla. <em>Nosotros lo elevamos.</em></h2>
+      <p class="a d3">Conocemos tu consultorio. Cada elemento refleja dedicación, intención y un profundo respeto por quienes confían en ti. Lo que proponemos es amplificar esa narrativa — que tus paredes transmitan la misma armonía y sensibilidad que defines en cada consulta.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — VISION -->
+  <section class="vision">
+    <div class="img-side"></div>
+    <div class="text-side">
+      <p class="label a">El Arte</p>
+      <h2 class="a d1">Naturaleza preservada, <em>belleza permanente.</em></h2>
+      <p class="a d2">Tu tiempo pertenece a tus pacientes, no al mantenimiento. Trabajamos con musgo 100% preservado — sin agua, sin luz, sin cuidado alguno. Conserva su textura, su color y su vitalidad durante años. Es la presencia de la naturaleza en su forma más pura, adaptada al ritmo de tu vida profesional.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — THE PIECE -->
+  <section class="piece">
+    <div class="text-side">
+      <p class="label a">Tu Pieza</p>
+      <h2 class="a d1">Artesanal, única, <em>irrepetible.</em></h2>
+      <p class="a d2">Esta composición no existe en ningún catálogo. Será concebida y elaborada exclusivamente para tu consultorio — cada textura, cada tono, cada relieve pensado para integrarse con la identidad que has construido. Una obra que tus pacientes van a sentir antes de siquiera mencionarla.</p>
+    </div>
+    <div class="img-side"></div>
+  </section>
+
+  <!-- SLIDE 5 — GIFT -->
+  <section class="gift">
+    <div class="img-side"></div>
+    <div class="text-side">
+      <span class="gift-badge a">Cortesía Exclusiva</span>
+      <h2 class="a d1">Dos bases de piedra <em>con musgo.</em></h2>
+      <p class="a d2">Queremos que cada rincón de tu consultorio respire la misma esencia. Por eso incluimos como obsequio dos bases artesanales de piedra con musgo preservado — para tu recepción, tu escritorio, o donde consideres que el detalle marque la diferencia.</p>
+      <p class="a d3" style="font-style:italic;color:var(--clay)">Porque la coherencia en cada detalle es lo que distingue lo excepcional.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 6 — INVESTMENT -->
+  <section class="investment">
+    <p class="label a" style="color:var(--clay)">Inversión</p>
+    <h2 class="a d1">Tu espacio, <em>elevado.</em></h2>
+    <div class="price-block a d2">
+      <div class="price">$4,500</div>
+      <p class="price-note">PARED DE MUSGO + 2 BASES DE PIEDRA DE REGALO</p>
+    </div>
+    <div class="terms a d3">
+      <div class="term">
+        <div class="term-icon">50%</div>
+        <span class="term-label">Adelanto</span>
+        <span class="term-detail">PARA INICIAR</span>
+      </div>
+      <div class="term">
+        <div class="term-icon">50%</div>
+        <span class="term-label">Contra entrega</span>
+        <span class="term-detail">AL FINALIZAR</span>
+      </div>
+      <div class="term">
+        <div class="term-icon">15d</div>
+        <span class="term-label">Entrega</span>
+        <span class="term-detail">DÍAS HÁBILES</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — SUMMARY -->
+  <section class="summary">
+    <p class="label a" style="color:var(--clay)">Resumen</p>
+    <h2 class="a d1" style="text-align:center">Lo que <em>incluye.</em></h2>
+    <div class="summary-grid">
+      <div class="summary-card a d1">
+        <div class="num">01</div>
+        <h3>Pared de Musgo</h3>
+        <p>Composición artesanal de musgo preservado diseñada a medida para tu consultorio.</p>
+      </div>
+      <div class="summary-card a d2">
+        <div class="num">02</div>
+        <h3>Dos Bases de Piedra</h3>
+        <p>Bases artesanales con musgo preservado. Un regalo exclusivo para complementar tu espacio.</p>
+      </div>
+      <div class="summary-card a d3">
+        <div class="num">03</div>
+        <h3>Instalación</h3>
+        <p>Entrega e instalación profesional en tu consultorio. Sin complicaciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8 — CLOSING -->
+  <section class="closing">
+    <img src="mosu-logo-white.png" alt="MOSU" class="logo-bottom a">
+    <div class="line a d1"></div>
+    <h2 class="a d2">Michelle, <em>transformemos tu espacio.</em></h2>
+    <p class="a d3">Cada pieza requiere tiempo porque nace de un proceso artesanal, cuidado y dedicado. En 15 días, tu consultorio será una experiencia que tus pacientes recordarán mucho después de irse.</p>
+    <div class="line a d4"></div>
+    <p class="contact a d4">MOSU BY ANA SILVA</p>
+  </section>
+
+</div>
+
+<!-- SCROLL INDICATOR -->
+<div class="scroll-hint" id="scrollHint">
+  <span>Scroll</span>
+  <div class="arrow"></div>
+</div>
+
+<!-- COUNTER -->
+<div class="counter" id="counter">01 / 08</div>
+
+<script>
+// IntersectionObserver for fade-in
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('in');
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.a').forEach(el => obs.observe(el));
+
+// Page counter
+const deck = document.getElementById('deck');
+const sections = deck.querySelectorAll('section');
+const counter = document.getElementById('counter');
+const hint = document.getElementById('scrollHint');
+const total = sections.length;
+
+const secObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = Array.from(sections).indexOf(e.target) + 1;
+      counter.textContent = String(idx).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+      hint.style.opacity = idx === 1 ? '.5' : '0';
+      // Adjust counter color based on background
+      const dark = e.target.classList.contains('cover') || e.target.classList.contains('investment') || e.target.classList.contains('closing') || e.target.classList.contains('vision') || e.target.classList.contains('piece');
+      counter.style.color = dark ? 'var(--clay)' : 'var(--moss)';
+    }
+  });
+}, { threshold: 0.5 });
+sections.forEach(s => secObs.observe(s));
+</script>
+
+</body>
+</html>
